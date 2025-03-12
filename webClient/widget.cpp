@@ -6,9 +6,10 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    // socket_.connected();
+    // socket_.readyRead();
     QObject::connect(&socket_, &QAbstractSocket::connected, this, &Widget::doConnected);
-    QObject::disconnect(&socket_, &QAbstractSocket::disconnected, this, &Widget::doDisconnected);
+    QObject::connect(&socket_, &QAbstractSocket::disconnected, this, &Widget::doDisconnected);
+    QObject::connect(&socket_, &QIODevice::readyRead, this, &Widget::doReadyRead);
 }
 
 Widget::~Widget()
@@ -26,9 +27,21 @@ void Widget::doDisconnected()
     ui->pteMessage->insertPlainText("Disconnected!");
 }
 
+void Widget::doReadyRead()
+{
+    ui->pteMessage->insertPlainText(socket_.readAll());
+}
+
 void Widget::on_pbConnect_clicked()
 {
-    socket_.connectToHost(ui->leHost->text(), ui->lePort->text().toUShort());
+    if (ui->rbTCP->isChecked())
+    {
+        socket_.connectToHost(ui->leHost->text(), ui->lePort->text().toUShort());
+    }
+    else if(ui->rbSSL->isChecked())
+    {
+        socket_.connectToHostEncrypted(ui->leHost->text(), ui->lePort->text().toUShort());
+    }
 }
 
 

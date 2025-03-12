@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTcpSocket>
+#include <QSslSocket>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,10 +18,12 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
-    QTcpSocket socket_;
+    // QTcpSocket socket_;
+    QSslSocket socket_;
 public slots:
     void doConnected();
     void doDisconnected();
+    void doReadyRead();
 
 private slots:
     void on_pbConnect_clicked();
