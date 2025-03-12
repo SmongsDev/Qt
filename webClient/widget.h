@@ -34,6 +34,10 @@ private slots:
 
     void on_pbSend_clicked();
 
+    void on_rbTCP_clicked();
+
+    void on_rbSSL_clicked();
+
 private:
     Ui::Widget *ui;
 };

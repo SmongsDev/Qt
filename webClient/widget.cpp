@@ -62,3 +62,15 @@ void Widget::on_pbSend_clicked()
     socket_.write(ui->pteSend->toPlainText().toUtf8());
 }
 
+
+void Widget::on_rbTCP_clicked()
+{
+    ui->lePort->setText("80");
+}
+
+
+void Widget::on_rbSSL_clicked()
+{
+    ui->lePort->setText("443");
+}
+
