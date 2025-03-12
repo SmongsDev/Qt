@@ -1,0 +1,7 @@
+# vending-machine 폴더 내의 build 디렉토리와 .user 파일 무시
+/vending-machine/build/
+/vending-machine/*.user
+
+# webClient 폴더 내의 build 디렉토리와 .user 파일 무시
+/webClient/build/
+/webClient/*.user
