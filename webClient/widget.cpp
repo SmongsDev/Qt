@@ -34,13 +34,16 @@ void Widget::doReadyRead()
 
 void Widget::on_pbConnect_clicked()
 {
+    QString host = ui->leHost->text();
+    ushort port = ui->lePort->text().toUShort();
+
     if (ui->rbTCP->isChecked())
     {
-        socket_.connectToHost(ui->leHost->text(), ui->lePort->text().toUShort());
+        socket_.connectToHost(host, port);
     }
     else if(ui->rbSSL->isChecked())
     {
-        socket_.connectToHostEncrypted(ui->leHost->text(), ui->lePort->text().toUShort());
+        socket_.connectToHostEncrypted(host, port);
     }
 }
 
