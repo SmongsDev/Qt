@@ -5,7 +5,6 @@
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
-    , money(0)
 {
     ui->setupUi(this);
     updateButtonState();
@@ -97,8 +96,6 @@ void Widget::on_pbReset_clicked()
                       .arg(counts.coin10);
 
     mb.information(this, "Result", msgText);
-    money = 0;
-    ui->lcdNumber->display(0);
-    updateButtonState();
+    increaseMoney(-money);
 }
 
