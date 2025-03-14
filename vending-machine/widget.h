@@ -24,7 +24,7 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
     int money{0};
-    void increaseMoney(int value);
+    void changeMoney(int value);
     void updateButtonState();
     CoinCounts calculateCoins();
 

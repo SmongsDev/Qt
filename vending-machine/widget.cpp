@@ -15,7 +15,7 @@ Widget::~Widget()
     delete ui;
 }
 
-void Widget::increaseMoney(int value){
+void Widget::changeMoney(int value){
     money += value;
     ui->lcdNumber->display(money);
     updateButtonState();
@@ -29,41 +29,41 @@ void Widget::updateButtonState() {
 
 void Widget::on_pb10_clicked()
 {
-    increaseMoney(10);
+    changeMoney(10);
 }
 
 
 void Widget::on_pb50_clicked()
 {
-    increaseMoney(50);
+    changeMoney(50);
 }
 
 void Widget::on_pb100_clicked()
 {
-    increaseMoney(100);
+    changeMoney(100);
 }
 
 
 void Widget::on_pb500_clicked()
 {
-    increaseMoney(500);
+    changeMoney(500);
 }
 
 void Widget::on_pbCaffee_clicked()
 {
-    increaseMoney(-100);
+    changeMoney(-100);
 }
 
 
 void Widget::on_pbMilk_clicked()
 {
-    increaseMoney(-150);
+    changeMoney(-150);
 }
 
 
 void Widget::on_pbTee_clicked()
 {
-    increaseMoney(-200);
+    changeMoney(-200);
 }
 
 CoinCounts Widget::calculateCoins() {
@@ -96,6 +96,7 @@ void Widget::on_pbReset_clicked()
                       .arg(counts.coin10);
 
     mb.information(this, "Result", msgText);
-    increaseMoney(-money);
+    changeMoney(-money);
+    Q_ASSERT(money == 0);
 }
 
