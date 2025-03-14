@@ -96,7 +96,9 @@ void Widget::on_pbReset_clicked()
                       .arg(counts.coin50)
                       .arg(counts.coin10);
 
-    mb.information(this, "My Title", msgText);
-
+    mb.information(this, "Result", msgText);
+    money = 0;
+    ui->lcdNumber->display(0);
+    updateButtonState();
 }
 
